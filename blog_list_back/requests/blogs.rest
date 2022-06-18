@@ -1,0 +1,33 @@
+GET http://localhost:3001/api/blogs
+
+###
+GET http://localhost:3001/api/blogs/6276f5d7a606e353eafcd1fac
+
+###
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIyIiwiaWQiOiI2MjdmMjZjYjRmYzIyY2JlYmQ4NmNjYzgiLCJpYXQiOjE2NTI1NTU1NDN9.Xr6kuRXZ61RFy06Zf2Uo1f4SEEs5IdeJFayBKeYKL5I
+
+{   
+    "title":"BLOG",
+    "url":"www.blog.com",
+    "author":"nombre_autor",
+    "likes":62
+}
+
+###
+DELETE http://localhost:3001/api/blogs/62812f73293ec7e19cc9f884
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIyIiwiaWQiOiI2MjdmMjZjYjRmYzIyY2JlYmQ4NmNjYzgiLCJpYXQiOjE2NTI1NTU1NDN9.Xr6kuRXZ61RFy06Zf2Uo1f4SEEs5IdeJFayBKeYKL5I
+
+
+###
+PUT http://localhost:3001/api/blogs/62800f92b8f08aa614364dce
+Content-Type: application/json
+
+{   
+    "user": "627f26cb4fc22cbebd86ccc8",
+    "title":"EDITA3",
+    "url":"www.fulleditadopa.com",
+    "author":"YOLOEDITE",
+    "likes": 6
+}
