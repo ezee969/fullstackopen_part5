@@ -38,7 +38,6 @@ blogRouter.post(
         likes: body.likes,
         user: user._id,
       });
-
       const savedBlog = await blog.save();
       user.blogs = user.blogs.concat(savedBlog._id);
 
@@ -50,6 +49,20 @@ blogRouter.post(
     }
   }
 );
+
+blogRouter.post('/:id/comments', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { body } = req;
+    const blog = await Blog.findById(id);
+
+    blog.comments = blog.comments.concat(body.comment);
+    const savedBlog = await blog.save();
+    res.status(201).json(savedBlog);
+  } catch (error) {
+    next(error);
+  }
+});
 
 blogRouter.delete('/:id', middleware.tokenExtractor, async (req, res, next) => {
   try {

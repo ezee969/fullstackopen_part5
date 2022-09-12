@@ -1,25 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { store } from 'app/store';
+import { Provider } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
-import Login from './components/Login/login';
-import Blogs from './components/Blogs/blogs';
+import Login from './views/Login';
+import Blogs from './views/Blogs';
+import { BlogView, UserProfile } from 'views/Blogs/components';
 
 const App = () => {
-  const [user, setUser] = useState(null);
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Login setUser={setUser} />} />
-        <Route
-          path='/blogs'
-          element={<Blogs setUser={setUser} user={user} />}
-        />
+        <Route path="/" element={<Login />} />
+        <Route path="/blogs" element={<Blogs />}>
+          <Route path="users/:username" element={<UserProfile />} />
+          <Route path="blog/:id" element={<BlogView />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+root.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+);

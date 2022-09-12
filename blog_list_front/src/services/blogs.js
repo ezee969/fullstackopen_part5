@@ -9,10 +9,18 @@ const getAll = async () => {
   return response.data;
 };
 
+const postComment = async (comment, blogId) => {
+  const response = await axios.post(`${URL}/${blogId}/comments`, comment);
+  console.log(response);
+
+  return response.data;
+};
+
 const create = async (newObject, token) => {
   const config = {
     headers: { Authorization: `bearer ${token}` },
   };
+  console.log(config);
 
   const response = await axios.post(URL, newObject, config);
   return response.data;
@@ -32,4 +40,4 @@ const del = async (blogId, token) => {
   return response.data;
 };
 
-export default { getAll, create, replace, del };
+export default { getAll, create, replace, del, postComment };

@@ -23,6 +23,7 @@ const userExtractor = async (request, response, next) => {
 };
 
 const errorHandler = (error, req, res, next) => {
+  console.log(error);
   if (error.name === 'CastError') {
     return res.status(400).send({
       error: 'malformatted id',
@@ -44,7 +45,6 @@ const errorHandler = (error, req, res, next) => {
       error: 'invalid token',
     });
   }
-
   logger.error(error.message);
 
   next(error);
